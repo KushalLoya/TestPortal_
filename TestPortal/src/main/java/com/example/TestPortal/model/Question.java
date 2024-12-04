@@ -7,7 +7,7 @@ public class Question {
     private int questionId;
     private int examId;
     private String content;
-    private String type; // 'MCQ' or 'ShortAnswer'
-    private String options; // JSON-encoded options for MCQs
+    private String type;  // Enum: 'MCQ', 'ShortAnswer'
+    private String options;  // JSON-encoded options for MCQs
     private String correctAnswer;
 } 
