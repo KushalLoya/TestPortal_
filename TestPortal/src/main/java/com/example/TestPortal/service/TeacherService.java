@@ -1,7 +1,15 @@
 package com.example.TestPortal.service;
 
+import com.example.TestPortal.model.Course;
+import com.example.TestPortal.model.Exam;
+import com.example.TestPortal.model.Question;
+import com.example.TestPortal.model.Student;
+import com.example.TestPortal.model.ExamStatistics;
+import com.example.TestPortal.model.QuestionStatistics;
 import com.example.TestPortal.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeacherService {
@@ -11,17 +19,53 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public void createExam(int courseId, String title, String description, String date) {
-        teacherRepository.createExam(courseId, title, description, date);
+    public int createExam(Exam exam) {
+        return teacherRepository.createExam(
+            exam.getTitle(),
+            exam.getDescription(),
+            exam.getDate(),
+            exam.getCourseId()
+        );
     }
 
-    public void updateExam(int examId, String newTitle, String newDescription, String newDate) {
-        teacherRepository.updateExam(examId, newTitle, newDescription, newDate);
+    public void addQuestion(Question question) {
+        teacherRepository.addQuestion(question);
     }
 
-    public void deleteExam(int examId) {
-        teacherRepository.deleteExam(examId);
+    public void deleteQuestion(int questionId) {
+        teacherRepository.deleteQuestion(questionId);
     }
 
-    // Add other business logic methods as needed
+    public List<Exam> getTeacherExams(int teacherId) {
+        return teacherRepository.getTeacherExams(teacherId);
+    }
+
+    public void updateExam(int examId, Exam exam) {
+        teacherRepository.updateExam(examId, exam.getTitle(), 
+            exam.getDescription(), exam.getDate());
+    }
+
+    public List<Question> getExamQuestions(int examId) {
+        return teacherRepository.getExamQuestions(examId);
+    }
+
+    public List<Student> getEnrolledStudents(int teacherId, int courseId) {
+        return teacherRepository.getEnrolledStudents(teacherId, courseId);
+    }
+
+    public List<Course> getTeacherCourses(int teacherId) {
+        return teacherRepository.getTeacherCourses(teacherId);
+    }
+
+    public void updateQuestion(Question question) {
+        teacherRepository.updateQuestion(question);
+    }
+
+    public ExamStatistics getExamStatistics(int examId) {
+        return teacherRepository.getExamStatistics(examId);
+    }
+
+    public QuestionStatistics getQuestionStatistics(int questionId) {
+        return teacherRepository.getQuestionStatistics(questionId);
+    }
 } 
