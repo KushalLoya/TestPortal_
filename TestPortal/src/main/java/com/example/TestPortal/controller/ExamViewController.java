@@ -40,4 +40,4 @@ public class ExamViewController {
     public ResponseEntity<ExamStatistics> getExamStatistics(@PathVariable int examId) {
         return ResponseEntity.ok(teacherService.getExamStatistics(examId));
     }
-} 
+}
