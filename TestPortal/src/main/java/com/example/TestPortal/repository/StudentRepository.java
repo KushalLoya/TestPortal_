@@ -15,37 +15,23 @@ public class StudentRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addStudent(Student student) {
-        String sql = "INSERT INTO students (name, email) VALUES (?, ?)";
-        jdbcTemplate.update(sql, student.getName(), student.getEmail());
-    }
-
-    public void deleteStudent(Long id) {
-        String sql = "DELETE FROM students WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-    }
-
-    public void updateStudent(Student student) {
-        String sql = "UPDATE students SET name = ?, email = ? WHERE id = ?";
-        jdbcTemplate.update(sql, student.getName(), student.getEmail(), student.getStudentId());
-    }
-
-    public Student getStudentById(Long id) {
-        String sql = "SELECT * FROM students WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, studentRowMapper(), id);
+    public Student getStudentById(int student_id) {
+        String sql = "SELECT * FROM Student WHERE student_id = ?";
+        return jdbcTemplate.queryForObject(sql, studentRowMapper(), student_id);
     }
 
     public List<Student> getAllStudents() {
-        String sql = "SELECT * FROM students";
+        String sql = "SELECT * FROM Student";
         return jdbcTemplate.query(sql, studentRowMapper());
     }
 
     private RowMapper<Student> studentRowMapper() {
         return (rs, _) -> {
             Student student = new Student();
-            student.setStudentId(rs.getInt("id"));
+            student.setStudentId(rs.getInt("student_id"));
             student.setName(rs.getString("name"));
             student.setEmail(rs.getString("email"));
+            // Note: We typically don't want to expose password data
             return student;
         };
     }

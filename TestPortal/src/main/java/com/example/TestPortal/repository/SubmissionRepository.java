@@ -14,7 +14,7 @@ public class SubmissionRepository {
     public SubmissionRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    //To Student
     public void createSubmission(Submission submission) {
         String sql = "INSERT INTO Submission (student_id, exam_id, total_score, submission_date) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, 
@@ -24,27 +24,27 @@ public class SubmissionRepository {
             submission.getSubmissionDate()
         );
     }
-
+    // To Teacher and Student
     public Submission getSubmissionById(int submissionId) {
         String sql = "SELECT * FROM Submission WHERE submission_id = ?";
         return jdbcTemplate.queryForObject(sql, submissionRowMapper(), submissionId);
     }
-
+    // To Student and Teacher
     public List<Submission> getStudentSubmissions(int studentId) {
         String sql = "SELECT * FROM Submission WHERE student_id = ?";
         return jdbcTemplate.query(sql, submissionRowMapper(), studentId);
     }
-
+    //To Teacher
     public List<Submission> getExamSubmissions(int examId) {
         String sql = "SELECT * FROM Submission WHERE exam_id = ?";
         return jdbcTemplate.query(sql, submissionRowMapper(), examId);
     }
-
+    //Teacher
     public void updateSubmissionScore(int submissionId, double totalScore) {
         String sql = "UPDATE Submission SET total_score = ? WHERE submission_id = ?";
         jdbcTemplate.update(sql, totalScore, submissionId);
     }
-
+    
     private RowMapper<Submission> submissionRowMapper() {
         return (rs, _) -> {
             Submission submission = new Submission();

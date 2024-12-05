@@ -70,7 +70,7 @@ public class TeacherController {
 
     @PutMapping("/questions/{questionId}")
     public ResponseEntity<Void> updateQuestion(
-            @PathVariable int questionId, 
+            @PathVariable int questionId,
             @RequestBody Question question) {
         question.setQuestionId(questionId);
         teacherService.updateQuestion(question);

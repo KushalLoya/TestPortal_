@@ -15,24 +15,8 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping
-    public void addStudent(@RequestBody Student student) {
-        studentService.addStudent(student);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
-    }
-
-    @PutMapping("/{id}")
-    public void updateStudent(@PathVariable int id, @RequestBody Student student) {
-        student.setStudentId(id);
-        studentService.updateStudent(student);
-    }
-
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id) {
+    public Student getStudentById(@PathVariable int id) {
         return studentService.getStudentById(id);
     }
 

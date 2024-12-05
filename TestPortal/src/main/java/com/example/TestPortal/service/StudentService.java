@@ -14,19 +14,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public void addStudent(Student student) {
-        studentRepository.addStudent(student);
-    }
-
-    public void deleteStudent(Long id) {
-        studentRepository.deleteStudent(id);
-    }
-
-    public void updateStudent(Student student) {
-        studentRepository.updateStudent(student);
-    }
-
-    public Student getStudentById(Long id) {
+    public Student getStudentById(int id) {
         return studentRepository.getStudentById(id);
     }
 
