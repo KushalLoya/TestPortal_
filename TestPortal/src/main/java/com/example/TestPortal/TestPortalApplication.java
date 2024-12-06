@@ -1,4 +1,4 @@
-package backend.src.main.java.com.example.TestPortal;
+package com.example.TestPortal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
